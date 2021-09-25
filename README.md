@@ -16,17 +16,17 @@ Id,Probability
 3,0.000
 etc.
 
-Описание данных:
+## Data description:
 
 x_train.txt, x_test.txt – plain text reviews separated by \n.
 y_train.csv – target, 1 for positive review and 0 for negative.
 random_prediction.csv – a sample submission file in the required format (target is uniformly sampled).
 
 
-Для скачивания данных: kaggle competitions download -c iad-deep-learning-sentiment
+## To download data: kaggle competitions download -c iad-deep-learning-sentiment
 
-Модель и особенности:
+## Model and its specific:
 
-Первоначально была сделана предобработка данных: удаление пунктуации, приведение к нижнему регистру. В качестве эмбеддингов были использованы предобученные эмбеддинги из модели GloVe. Архитектура нейронной сети несложная: всего лишь 2 Bidirectional слоя и 1 Dropout. При этом качество очень высокое: 0.9881.
+Initially, data preprocessing was done: removing punctuation, converting to lower case. Pretrained embeddings from the GloVe model were used as embeddings. The neural network architecture is simple: only 2 Bidirectional layers and 1 Dropout. At the same time, the quality is very high: 0.9881.
 
-Проблемой решения этой задачи сначала стала проблема памяти. С помощью более пристального изучения данных было замечено, что основная суть каждого review идёт до ':' - информация до двоеточия в review как будто бы главная мысль отзыва. Поэтому было принято решение обрезать каждый review до ':'. Такая проблема была на kaggle-kernel и, соответственно, когда данные существенно уменьшились, она исчезла. На google colab проблемы с RAM не было, поэтому можно было не обрезать данные, а обучить модель на полном датасете. Именно поэтому в репозитории можно найти 2 ноутбука: с обрезанным датасетом и без. 
+The problem of solving this problem first became the problem of memory. With a closer look at the data, it was noticed that the main point of each review goes to ':' - the information before the colon in the review is like the main idea of ​​the review. Therefore, it was decided to truncate each review to ':'. This problem was on the kaggle-kernel and, accordingly, when the data decreased significantly, it disappeared. On google colab, there was no problem with RAM, so it was possible not to trim the data, but to train the model on a full dataset. That is why you can find 2 laptops in the repository: with and without a cropped dataset.
